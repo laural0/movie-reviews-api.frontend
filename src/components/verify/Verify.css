@@ -1,0 +1,16 @@
+.verify-box {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.verify-avatar {
+  margin: 1px;
+  background-color: var(--secondary-main);
+}
+
+.verify-button {
+  margin-top: 3px;
+  margin-bottom: 2px;
+}

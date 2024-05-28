@@ -1,47 +1,50 @@
-import "./App.css";
-import Demo from "./Demo";
-import api from "./api/AxiosConfig";
-import { useState, useEffect } from "react";
-import Layout from "./components/Layout";
-import { Routes, Route } from "react-router-dom";
-import Home from "./components/home/Home";
-import Header from "./components/header/Header";
-import Trailer from "./components/trailer/Trailer";
-import Reviews from "./components/reviews/Reviews";
-import NotFound from "./components/notFound/NotFound";
+import './App.css'
+import api from './api/AxiosConfig'
+import { useState, useEffect } from 'react'
+import Layout from './components/Layout'
+import { Routes, Route } from 'react-router-dom'
+import Home from './components/home/Home'
+import Header from './components/header/Header'
+import Trailer from './components/trailer/Trailer'
+import Reviews from './components/reviews/Reviews'
+import NotFound from './components/notFound/NotFound'
+import SignUp from './components/signUp/SignUp'
+import Login from './components/login/Login'
+import Verify from './components/verify/Verify'
+import ResendCode from './components/resendCode/ResendCode'
 
 function App() {
-  const [movies, setMovies] = useState();
-  const [movie, setMovie] = useState();
-  const [reviews, setReviews] = useState();
+  const [movies, setMovies] = useState()
+  const [movie, setMovie] = useState()
+  const [reviews, setReviews] = useState()
 
   const getMovies = async () => {
     try {
-      const response = await api.get("/api/v1/movies");
+      const response = await api.get('/api/v1/movies')
 
-      setMovies(response.data);
+      setMovies(response.data)
     } catch (err) {
-      console.log(err);
+      console.log(err)
     }
-  };
+  }
 
   const getMovieData = async (movieId) => {
     try {
-      const response = await api.get(`/api/v1/movies/${movieId}`);
+      const response = await api.get(`/api/v1/movies/${movieId}`)
 
-      const singleMovie = response.data;
+      const singleMovie = response.data
 
-      setMovie(singleMovie);
+      setMovie(singleMovie)
 
-      setReviews(singleMovie.reviewIds);
+      setReviews(singleMovie.reviewIds)
     } catch (error) {
-      console.error(error);
+      console.error(error)
     }
-  };
+  }
 
   useEffect(() => {
-    getMovies();
-  }, []);
+    getMovies()
+  }, [])
 
   return (
     <div className="App">
@@ -50,7 +53,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route
             path="/"
-            element={movies ? <Home movies={movies} /> : "Loading..."}
+            element={movies ? <Home movies={movies} /> : 'Loading...'}
           ></Route>
           <Route path="/Trailer/:ytTrailerId" element={<Trailer />}></Route>
           <Route
@@ -65,10 +68,14 @@ function App() {
             }
           ></Route>
           <Route path="*" element={<NotFound />}></Route>
+          <Route path="/login" element={<Login />}></Route>
+          <Route path="/signup" element={<SignUp />}></Route>
+          <Route path="/verify" element={<Verify />}></Route>
+          <Route path="/resendCode" element={<ResendCode />}></Route>
         </Route>
       </Routes>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

@@ -1,0 +1,16 @@
+.sign-up-box {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sign-up-avatar {
+  margin: 1px;
+  background-color: var(--secondary-main);
+}
+
+.sign-up-button {
+  margin-top: 3px;
+  margin-bottom: 2px;
+}

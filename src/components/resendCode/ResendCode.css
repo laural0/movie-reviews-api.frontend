@@ -1,0 +1,16 @@
+.resend-box {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.resend-avatar {
+  margin: 1px;
+  background-color: var(--secondary-main);
+}
+
+.resend-button {
+  margin-top: 3px;
+  margin-bottom: 2px;
+}
