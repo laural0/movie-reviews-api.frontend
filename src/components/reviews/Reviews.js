@@ -1,44 +1,43 @@
-import { useEffect, useRef } from "react";
-import api from "../../api/AxiosConfig";
-import { useParams } from "react-router-dom";
-import { Container, Row, Col } from "react-bootstrap";
-import ReviewForm from "../reviewForm/ReviewForm";
+import { useEffect, useRef } from 'react'
+import api from '../../api/AxiosConfig'
+import { useParams } from 'react-router-dom'
+import { Container, Row, Col } from 'react-bootstrap'
+import ReviewForm from '../reviewForm/ReviewForm'
 
-import React from "react";
+import React from 'react'
 
 const Reviews = ({ getMovieData, movie, reviews, setReviews }) => {
-  const revText = useRef();
-  let params = useParams();
-  const movieId = params.movieId;
+  const revText = useRef()
+  let params = useParams()
+  const movieId = params.movieId
+  const userId = localStorage.getItem('userId')
 
   useEffect(() => {
-    getMovieData(movieId);
-  }, []);
-
-  // if (!Array.isArray(reviews)) {
-  //   reviews = [];
-  // }
+    getMovieData(movieId)
+  }, [])
 
   const addReview = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
-    const rev = revText.current;
+    const rev = revText.current
 
     try {
-      const response = await api.post("/api/v1/reviews", {
-        reviewBody: rev.value,
-        imdbId: movieId,
-      });
+      const response = await api.post(
+        `/api/v0/reviews/addreview/imdbid/${movieId}/userid/${userId}`,
+        {
+          reviewBody: rev.value,
+        }
+      )
 
-      const updatedReviews = [...reviews, { body: rev.value }];
-      rev.value = "";
+      const updatedReviews = [...reviews, { body: rev.value }]
+      rev.value = ''
 
-      setReviews(updatedReviews);
-      console.log(updatedReviews);
+      setReviews(updatedReviews)
+      console.log(updatedReviews)
     } catch (err) {
-      console.error(err);
+      console.error(err)
     }
-  };
+  }
 
   return (
     <Container>
@@ -83,7 +82,7 @@ const Reviews = ({ getMovieData, movie, reviews, setReviews }) => {
                     </Col>
                   </Row>
                 </>
-              );
+              )
             })}
         </Col>
       </Row>
@@ -93,7 +92,7 @@ const Reviews = ({ getMovieData, movie, reviews, setReviews }) => {
         </Col>
       </Row>
     </Container>
-  );
-};
+  )
+}
 
-export default Reviews;
+export default Reviews

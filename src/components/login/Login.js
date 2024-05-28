@@ -30,7 +30,7 @@ export default function SignIn() {
     }
     console.log(requestBody)
     axios
-      .post('http://localhost:3000/login', requestBody)
+      .post('http://localhost:8080/api/v0/user/login', requestBody)
       .then((response) => {
         localStorage.setItem('userId', response.data)
         window.location.href = '/'

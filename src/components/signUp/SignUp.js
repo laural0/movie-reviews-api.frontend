@@ -26,15 +26,14 @@ export default function SignUp() {
     const requestBody = {
       username: data.get('username'),
       password: data.get('password'),
-      emailAddress: data.get('emailAddress'),
     }
     console.log(requestBody)
     axios
-      .post('http://localhost:3000/signup', requestBody)
+      .post('http://localhost:8080/api/v0/user/signUp', requestBody)
       .then((response) => {
         setTimeout(() => {
-          window.location.href = '/verify'
-        }, 5000)
+          window.location.href = '/'
+        }, 3000)
         console.log('signup successful!')
         setExistingUsername(0)
       })
@@ -78,17 +77,6 @@ export default function SignUp() {
                   autoComplete="password"
                 />
               </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="emailAddress"
-                  label="Email"
-                  type="email"
-                  id="emailAddress"
-                  autoComplete="email"
-                />
-              </Grid>
             </Grid>
             <Button
               type="submit"
@@ -111,18 +99,13 @@ export default function SignUp() {
       {existingUsername === 1 && (
         <Alert severity="error">
           Wrong username and password! Make sure that the username you want to
-          pick and also your email address don't already exist in our database!
+          pick doesn't already exist in our database!
         </Alert>
       )}
       {existingUsername === 0 && (
         <Alert severity="success">
-          Account created successfully! You received an email with an activation
-          code. You will soon be redirected to the activation page.
-          <p>
-            <Link href="/verify" variant="body2">
-              Click here to go to the activation page!
-            </Link>
-          </p>
+          Account created successfully! You will soon be redirected to the main
+          page.
         </Alert>
       )}
     </ThemeProvider>

@@ -10,8 +10,6 @@ import Reviews from './components/reviews/Reviews'
 import NotFound from './components/notFound/NotFound'
 import SignUp from './components/signUp/SignUp'
 import Login from './components/login/Login'
-import Verify from './components/verify/Verify'
-import ResendCode from './components/resendCode/ResendCode'
 
 function App() {
   const [movies, setMovies] = useState()
@@ -20,7 +18,7 @@ function App() {
 
   const getMovies = async () => {
     try {
-      const response = await api.get('/api/v1/movies')
+      const response = await api.get('/api/v0/movies')
 
       setMovies(response.data)
     } catch (err) {
@@ -30,7 +28,7 @@ function App() {
 
   const getMovieData = async (movieId) => {
     try {
-      const response = await api.get(`/api/v1/movies/${movieId}`)
+      const response = await api.get(`/api/v0/movies/${movieId}`)
 
       const singleMovie = response.data
 
@@ -70,8 +68,6 @@ function App() {
           <Route path="*" element={<NotFound />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/signup" element={<SignUp />}></Route>
-          <Route path="/verify" element={<Verify />}></Route>
-          <Route path="/resendCode" element={<ResendCode />}></Route>
         </Route>
       </Routes>
     </div>

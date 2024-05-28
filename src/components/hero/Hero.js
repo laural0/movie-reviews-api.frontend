@@ -1,19 +1,18 @@
-import "./Hero.css";
-import Carousel from "react-material-ui-carousel";
-import Paper from "@mui/material/Paper";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCirclePlay } from "@fortawesome/free-solid-svg-icons";
-import { Link, useNavigate } from "react-router-dom";
-// import { Button } from "react-bootstrap";
+import './Hero.css'
+import Carousel from 'react-material-ui-carousel'
+import Paper from '@mui/material/Paper'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCirclePlay } from '@fortawesome/free-solid-svg-icons'
+import { Link, useNavigate } from 'react-router-dom'
 import {
   ArrowBack,
   ArrowForward,
-} from "react-material-ui-carousel/dist/components/Styled";
+} from 'react-material-ui-carousel/dist/components/Styled'
 
 const Hero = ({ movies }) => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   function reviews(movieId) {
-    navigate(`/Reviews/${movieId}`);
+    navigate(`/Reviews/${movieId}`)
   }
   return (
     <div className="movie-carousel-container">
@@ -30,7 +29,7 @@ const Hero = ({ movies }) => {
               <div className="movie-card-container">
                 <div
                   className="movie-card"
-                  style={{ "--img": `url(${movie.backdrops[0]})` }}
+                  style={{ '--img': `url(${movie.backdrops[0]})` }}
                 >
                   <div className="movie-detail">
                     <div className="movie-poster">
@@ -66,11 +65,11 @@ const Hero = ({ movies }) => {
                 </div>
               </div>
             </Paper>
-          );
+          )
         })}
       </Carousel>
     </div>
-  );
-};
+  )
+}
 
-export default Hero;
+export default Hero
